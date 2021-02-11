@@ -1,0 +1,248 @@
+/*
+html5doctor.com Reset Stylesheet
+v1.6.1
+Last Updated: 2010-09-17
+Author: Richard Clark - http://richclarkdesign.com
+Twitter: @rich_clark
+*/
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+body {
+    line-height:1;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+    display:block;
+}
+
+nav ul {
+    list-style:none;
+}
+
+blockquote, q {
+    quotes:none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+/* change colours to suit your needs */
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+
+/* change colours to suit your needs */
+mark {
+    background-color:#ff9;
+    color:#000;
+    font-style:italic;
+    font-weight:bold;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+/* change border colour to suit your needs */
+hr {
+    display:block;
+    height:1px;
+    border:0;  
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+
+input, select {
+    vertical-align:middle;
+}
+
+
+
+/* @charset "utf-8"; */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ddd;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+main {
+    max-width: 830px;
+    width: 100%;
+    height: 200vh;
+    background-color: #fff;
+    margin: 50px auto;
+    padding: 20px;
+    font-size: 30px;
+}
+
+
+.menuButton {
+    display: block;
+    height: 200px; /* 80px */
+    width: 200px;  /* 80px */
+    position: fixed;
+    top: 0;
+    right: 0;
+    transition: .3s;
+    z-index: 3; /* menubuttonをnavの上にする */
+}
+
+/* ドロワーメニューに黒い線を付ける */
+.menuButton div { 
+    height: 1px;
+    width: 60%;
+    background-color: #333;
+    /* 黒い線を真ん中に寄せる */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: ease-out .3s; /* 2本目の線を消す処理にアニメーションを付ける(ease-outにすることで最初は早くて最後にゆっくり消えていくようになる) */
+}
+
+/* 3本重なっている線を上下に分ける */
+.menuButton div:nth-of-type(1) {
+    transform: translate(-50%, -50px); /* -15px */
+}
+
+.menuButton div:nth-of-type(3) {
+    transform: translate(-50%, 50px); /* 15px */
+}
+
+/* munuBttonクラスにactiveクラスが追加された場合の処理(1本目の線を回転させる) */
+.menuButton.active div:nth-of-type(1) {
+    transform: rotate(45deg) translate(-50%, 0); /* translateが上書きされて消えているのでもう一度記述し、y軸を-15pxから0にして奇麗になるように調整する */
+    transform-origin: 0% 50%; /* rotateの回転軸を真ん中(最初は50% 50%)から左端に指定する */
+}
+
+/* 2本目(真ん中)の線を消す */
+.menuButton.active div:nth-of-type(2) {
+    opacity: 0;
+    transform: translate(0%, -50%); /* 右側の方に消えていくようにする
+
+    /* ○の中に×を作るようにする */
+    /* width: 80%;
+    height: 80%;
+    border: 1px solid #333;
+    background-color: transparent;
+    border-radius: 50%; */
+}
+
+.menuButton.active div:nth-of-type(3) {
+    transform: rotate(-45deg) translate(-50%, 0);
+    transform-origin: 0% 50%;
+}
+
+/* 普段はnavを消す */
+nav {
+    opacity: 0;
+    visibility: hidden;
+    /* transform: scale(.9); */ /* 拡大しながらでてくる */
+    /* transform: translateX(100%); */ /* 右から出てくる(この場合opacityとvisibilityは消す) */
+    transform: translate(20px, -20px); /* 右上から斜めに出てくる */
+    transition: .3s;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 2; /* navをmenubuttonの下にする */
+    background-color: #fff;
+    font-size: 30px;
+    padding: 200px 0 100px; /* menubuttonが200*200なので200px分の余白を作る */
+    width: 300px;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: auto;
+    /* box-shadow: 0 0 10px 3px #333; */
+}
+
+nav  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+nav ul li:not(:first-of-type) {
+    margin-top: 20px;
+}
+
+/* activeクラスが追加された時にnavを表示させる */
+nav.active {
+    opacity: 1;
+    visibility: visible;
+    /* transform: scale(1); */ /* 拡大しながら出てくる */
+    /* transform: translateX(0%); */ /* 右から出てくる(この場合opacityとvisibilityは消す) */
+    transform: translate(0, 0); /* 右上から斜めに出てくる */
+}
+
+.mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+}
+
+.mask.active {
+    opacity: 0.7;
+    visibility: visible;
+}
